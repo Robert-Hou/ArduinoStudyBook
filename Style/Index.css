@@ -1,0 +1,161 @@
+﻿* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+p {
+    font-size: 14px;
+    font-family: "微软雅黑";
+    line-height: 18px;
+    text-indent: 2em;
+    margin-top: 3px;
+}
+
+    p img {
+        width: 1em;
+        height: 1em;
+    }
+
+    p.left {
+        text-indent: 0;
+    }
+
+a {
+    color: #0094ff;
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    border: none;
+}
+
+.left {
+    text-align: left;
+}
+
+.center {
+    text-align: center;
+}
+
+.right {
+    text-align: right;
+}
+
+
+.chapter {
+}
+
+
+.page {
+    width: 420px;
+    padding: 40px 22px;
+    position: relative;
+    float: left;
+    min-height: 748px;
+    border: 1px solid #808080;
+    margin: 10px;
+}
+
+    .page::before {
+        content: attr(chapter);
+        font-size: 10px;
+        position: absolute;
+        top: 10px;
+        left: 20px;
+        text-align: left;
+    }
+
+    .page::after {
+        content: attr(page);
+        font-size: 10px;
+        display: block;
+        position: absolute;
+        bottom: 10px;
+        right: 20px;
+        text-align: right;
+    }
+
+    .page.index {
+    }
+
+        .page.index .chapterName {
+            font-weight: bolder;
+            height: 60px;
+            position: absolute;
+            top: 50%;
+            margin-top: -30px;
+            font-size: 12px;
+        }
+
+            .page.index .chapterName .name {
+                font-size: 18px;
+            }
+
+    .page .minutia {
+        color: #b85e56;
+    }
+
+    .page h5.minutia {
+        font-size: 12px;
+    }
+
+        .page h5.minutia span {
+            font-size: 16px;
+        }
+
+        .page h5.minutia .remark {
+            font-size: 14px;
+        }
+
+    .page p.minutia {
+        text-indent: 0;
+        font-size: 14px;
+    }
+
+    .page .ImgBox {
+        margin-top: 3px;
+        width: 100%;
+        display: inline-block;
+    }
+
+        .page .ImgBox img {
+            width: 100%;
+        }
+
+        .page .ImgBox p {
+            text-align: center;
+            color: #b85e56;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+pre {
+    width: 100%;
+    background-color: #1e1e1e;
+    color: #c8c8c8;
+    overflow-x: auto;
+}
+
+    pre.lineFeed {
+        /*自动换行开始*/
+        white-space: pre-wrap; /* css3.0 */
+        white-space: -moz-pre-wrap; /* Firefox */
+        white-space: -pre-wrap; /* Opera 4-6 */
+        white-space: -o-pre-wrap; /* Opera 7 */
+        word-wrap: break-word; /* Internet Explorer 5.5+ */
+        /*自动换行结束*/
+    }
+
+    pre notes {
+        color: #57a64a;
+    }
+
+    pre keyword {
+        color: #569cd6;
+    }
+
+.title {
+    color: #981e1c;
+}

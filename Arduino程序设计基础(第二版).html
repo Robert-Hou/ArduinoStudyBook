@@ -1,0 +1,458 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Arduino程序设计基础(第二版)</title>
+    <meta charset="utf-8" />
+    <link href="Style/Index.css?v=1.7" rel="stylesheet" />
+</head>
+<body>
+    <div class="page" style="padding:0px;height:748px;" page="1">
+        <img src="Img/index.png" alt="Arduino程序设计基础(第二版)" />
+    </div>
+    <div class="chapter" name="版权信息">
+        <div class="page" chapter="版权信息" page="2">
+            <h4>版权信息</h4>
+            <p class="left">
+                书名:工程师经验手机:Anduino程序设计基础(第2版)<br />
+                作者:陈吕洲<br />
+                排版:Kingstar<br />
+                出版社:北京航空航天大学出版社<br />
+                出版时间:2015-03-10<br />
+                ISBN:9787512416871
+            </p>
+            <p class="left">本书由北京航空航天大学出版社有限公司授权北京当当科文电子商务有限公司制作与发行</p>
+            <p class="center">--·版权所有 侵权必究·--</p>
+        </div>
+    </div>
+    <div class="chapter" name="前言">
+        <div class="page" chapter="前言" page="3">
+            <h4 class="center title">前言</h4>
+            <p>Arduino不仅仅是全球最流行的开源硬件，也是个优秀的硬件开发平台，更是硬件开发的趋势。Ar-duino简单的开发方式使得开发者更关注于创意与实现，更快地完成自己的项目开发，大大节约学习的成本缩短开发的周期。</p>
+            <p>因为Arduino的种种优势，使得越来越多的专业硬件开发者已经或开始使用Arduino来开发他们的项目和产品；越来越多的软件开发者使用Arduino进入硬件、物联网等开发领域；在大学里，自动化、软件专业，甚至艺术专业，也纷纷开设了 Arduino相关课程。</p>
+            <p>笔者2008年开始接触 Arduino时即被Arduino的简单易用所吸引；后来创建了ArduinoCN中文社区，致力于Arduino的教学与推广；目前从事硬件开发工作，在工作中经常使用Arduino进行开发，积累了一定的经验。</p>
+            <p>本书是笔者将过去撰写的Arduino相关教程与自身开发经验相结合整理而成，主要针对大学的Arduino教学实验进行编写，亦适用于相关开发人员及入门者学习。</p>
+            <p>本书体系结构清晰，内容丰富，涵盖 Arduino基础知识及高级应用，中途穿插简单项目制作，用于巩固知识与扩展提高，同时提供常用的API参考，以便读者实践时查阅。</p>
+            <p>各章节所涉及内容如下</p>
+            <p>第1章 简单介绍Arduino的历史、软硬件及安装使用方法。</p>
+            <p>第2章 讲解语言基础、基本输入输岀方法、串口通信和一些常用函数的使用。</p>
+            <p>第3章 讲解Arduino I/O口的一些高级应用。</p>
+            <p>第4章 详细讲解如何使用和编写Arduino类库。</p>
+            <p>第5章 介绍串口、IIC、SPI三种通信方式在Arduino上的使用方法。</p>
+            <p>第6章 介绍如何使用EEPROM和SD卡记录和保存数据。</p>
+            <p>第7章 讲解Arduino红外通信的使用方法。</p>
+            <p>第8章 以1602 LCD和12864 LCD两种常见液晶显示</p>
+        </div>
+        <div class="page" chapter="前言" page="4">
+            <p>第9章针对特殊型号的Arduino控制器(Leonardo、Micro、Due等)的USB功能进行讲解。</p>
+            <p>第10章讲解使用Arduino进行网络通信的方法。</p>
+            <p>附录介绍使用Visual studio开发Arduino的方法及些常见问题的处理方式，并附带一些控制器手册和相关配置表格，以便读者查阅。</p>
+            <p>掌握了前三章，便基本了解了Arduino的开发方法，从而可以完成很多小型项目的开发。第4章以后为进阶教程，讲解Arduino的一些常用类库的使用。如果用于大学教学，则按章节循序渐进即可，教师亦可以设计一些小型项目供学生实践练习；如果已有一定的软硬件开发基础，则可根据实际项目要求，直接阅读相应章节。</p>
+            <p>感谢以下网友对笔者写感谢以下网友对笔者写作本书提供的帮助:吴琼(大茶园丁)、杨奇伟(kiwi)、朱泽州(ZZz)、沈金鑫(奔跑)、王翔(垟羽)、李海波(海神)、刘定杨(三水)。特别感谢潘拥军先生的悉心检查与耐心指导。</p>
+            <p>由于笔者水平有限，书中难免存在不足与错误之处，敬请读者批评指正。可以通过 Arduinocn中文社区(<a href="http://www.arduino.cn" target="_blank">http://www.arduino.cn</a>)参与本书相关内容的讨论，亦可直接与我联系，我的新浪微博是:<a href="http://weibo.com/coloz">http://weibo.com/coloz</a>。</p>
+            <p class="right">陈吕洲<br />2013年8月<p>
+        </div>
+    </div>
+    <div class="chapter" name="第1章 初识Arduino">
+        <div class="page index" chapter="第1章 初识Arduino" page="5">
+            <p class="chapterName left">
+                第1章<br /><span class="name">初识Arduino</span>
+            </p>
+        </div>
+        <div class="page" chapter="第1章 初识Arduino" page="6">
+            <p class="left">Ardunio自2005年推出以来便广受好评，如今已经成为最热门的开源硬件之一，对于没有接触过Arduino的朋友来说，可能对其还有很多疑问，本章就将为大家一一解答。</p>
+        </div>
+        <div class="page" chapter="第1章 初识Arduino" page="7">
+            <h5 class="minutia">1.1<br /><span>什么是Arduino</span></h5>
+            <p>在回答什么是Arduino之前，先来看看几个基于Arduino开发的项目。</p>
+            <p>1.ArduPliot</p>
+            <p>ArduPilot（<a href="#img1_1">图1-1</a>）是基于Arduino开发的无人机控制系统，是目前最强大的基于惯性导航的开源飞行控制器之一，集成了陀螺仪、加速度传感器、电子罗盘传感器、大气压传感器和GPS等部件。<a href="#img1_2">图1-2</a>为使用ArduPilot制作的四轴飞行器。</p>
+            <div class="ImgBox" id="img1_1">
+                <img src="Img/1_1.png" />
+                <p>图1-1 ArduPilot控制器</p>
+            </div>
+            <p>2.MakerBot</p>
+            <p>MakerBot(<a href="#img1_3">图1-3</a>)是一款使用Arduino Mega作为主控制器的3D打印机。Arduino负责解读G代码，并驱动步进电机和打印喷头等部件打印出3D物体。</p>
+            <p>3.ArduSat</p>
+            <p>ArduSat是美国加州的NanoSatisfi团队在众筹网站Kickstarter上推出的采用Arduino制作的微型人造卫星项目（<a href="#img1_4">图1-4</a>），目的是让任何人都可以用更低的成本从事有关宇宙研究。</p>
+            <p>该卫星只有10立方厘米大小，能以18倍声速的速度绕地球飞行，并配备照相机和多大25种的感应器，搭载的感应器包括电磁波测定装置、分光器、振动传感器、光传感器、GPS、改革计数器、陀螺仪、磁场传感器、二氧化钛检测传感器，等等。</p>
+        </div>
+        <div class="page" chapter="1.1 什么是Arduino" page="8">
+            <p>4.智能灯孔系统</p>
+            <p><a href="#img1-5">图1-5</a>为通过ZigBee、GPRS、Arduino等多种计数集合制作的无线灯孔系统。</p>
+            <div class="ImgBox" id="img1_2">
+                <img src="Img/1_2.png" alt="图1-2 使用ArduPilot制作的四轴飞行器" />
+                <p>图1-2 使用ArduPilot制作的四轴飞行器</p>
+            </div>
+            <div class="ImgBox" id="img1_3">
+                <img src="Img/1_3.png" alt="图1-3 MakerBot 3D打印机" />
+                <p>图1-3 MakerBot 3D打印机</p>
+            </div>
+        </div>
+        <div class="page" chapter="1.1 什么是Arduino" page="9">
+            <p>如<a href="#img1_5">图1-5</a>所示为一个路灯控制节点，它由电源模块、互感器、继电器、电能计算芯片、ZigBee无线模块和AVR单片机组成。其中AVR单片机中的程序便是使用Arduino库写成的。</p>
+            <p>Arduino并不仅仅是一块小小的电路板，还是一个开放的电子开发平台。他既包含了硬件——电路板，也包含了软件——开发环境和许许多多开发者、使用者创造的代码、程序。</p>
+            <p>Arduino跑开了传统硬件开发的复杂操作，不需要了解硬件的内部结果和寄存器设置，也不需要过多的电子知识和编程知识，而只需要通过简单的学习，了解各个引脚和函数的作用，便可利用它开发出各种出色的项目。</p>
+            <div class="ImgBox">
+                <img src="Img/1_4.png" alt="图1-4 ArduinoSat 卫星结构示意图" />
+                <p>图1-4 ArduinoSat 卫星结构示意图</p>
+            </div>
+        </div>
+        <div class="page" chapter="1.1 什么是Arduino" page="10">
+            <div class="ImgBox" id="img1_5">
+                <img src="Img/1_5.png" alt="图1-5 无线路灯控制终端" />
+                <p>图1-5 无线路灯控制终端</p>
+            </div>
+            <p>通过将Arduino与多种软件结合（如Flash、Max/Msp、VVVV、Processing），还可以制作出有趣的互动作品。</p>
+        </div>
+
+        <div class="page" chapter="第1章 初识Arduino" page="11">
+            <h5 class="minutia">1.2<br /><span>Arduino 的由来</span></h5>
+            <p>Arduino创始团队（<a href="#img1_6">图1-6</a>）中的Massimo Banzi之前是意大利vrea一家高科技设计学校的老师。他的学生们经常抱怨找不到既便宜又好用的微控制器。David Cuartielles是一个西班牙籍芯片工程师，当时在这所学校做访问学者。2005年冬天，Massimo Banzi跟David Cuartielles讨论了这个问题。两个人决定设计自己的电路板，并吸收了Banzi的学生David Mellis 为电路板设计编程语言。两天以后，David Mellis 就写出了程序代码。又过了三天，电路板就完工了。</p>
+            <div class="ImgBox" id="img1_6">
+                <img src="Img/1_6.png" alt="图1-6 Arduino创始团队" />
+                <p>图1-6 Arduino创始团队</p>
+            </div>
+            <p>据说Massimo Banzi喜欢去一家名叫di Re Arduino的酒吧，该酒吧是以1000年前意大利国王Arduin的名字命名的。为了纪念这个地方，他将这块电路板命名为Arduino。</p>
+            <p>几乎任何人，即使不懂电脑编程也能使用Arduino做出很酷的东西，比如对传感器做出回应，闪烁灯光，还能控制马达。随后Banzi、Cuartielles和Mellis把设计图放到了网上。版权法可以监管开源软件，却很难用在硬件上，为了保持设计的开发源码理念，他们决定采用Creative Commons（CC）的授权方式公开硬件设计图。这样的授权下，任何人都可以生产电路板的复制品，甚至还能重新设计和销售原设计的复制品。人们不需要支付任何费用，甚至不用去的Arduino团队的许可。然而，重新发布了引用设计，就必须声明原始Arduino团队的贡献。如果修改了电路板，则最新涉笔必须使用相同或类似的Creative Commons（CC）的授权方式，以保证新版本的Arduino电路板也会一样是自由开放的。唯一保留的只有Arduino这个名字，他被注册成了商标，在没有官方授权的情况下不能使用它。短短几年时间，Arduino在全球积累了大量用户，推动了开源营建、创客运动，甚至是硬件创业领域的发展。越来越多的芯片厂商和开发公司宣布自己的营建支持Arduino。</p>
+        </div>
+        <div class="page" chapter="1.2 Arduino 的由来" page="12">
+            <p>在Arduino的推动下戴胜了许多优秀的开源营建项目，有趣的是，Arduino本身也是多开源项目融合的成果。<a href="#img1_7">图1-7</a>为Arduino使用的开源项目。</p>
+            <div class="ImgBox" id="img1_7">
+                <img src="Img/1_7.png" alt="图1-7 组成Arduino的开源项目" />
+                <p>图1-7 组成Arduino的开源项目</p>
+            </div>
+        </div>
+        <div class="page" chapter="1.2 Arduino 的由来" page="13">
+            <p>Arduino编译器使用的是GCC,这是GNU开源计划的核心，是使用最广泛的编译器之一。Arduino语言衍生自Wiring语言，是一个开源的单片机编程架构，同事Arduino语言又是基于AVR Libc这个AVR单片机扩展库编写的，AVR Libe也是一个优秀的开源项目。Arduino集成开发环境是基于Processing的，Processing是一个为设计师设计的新兴预言，当然这也是一个开源项目。Processing开发环境是用java编写的，java是众所周知的开源项目。想要编译好Arduino程序下载到Arduino控制器中，还需要用到AVRDUDE，这也是一个开源项目的成果。</p>
+            <p>可以说，没有这些开源项目，就没有今天的Arduino。</p>
+        </div>
+
+        <div class="page" chapter="第1章 初识Arduino" page="14">
+            <h5 class="minutia">1.3为什么使用Arduino作为开发平台</h5>
+            <p>用Arduino创作或者进行产品开发的优势是很明显的。</p>
+            <p>1.跨平台</p>
+            <p>Arduino IDE可以在Windows、Mac OS X和Linux三大主流操作系统上运行，而其他的大多数控制器智能在windows上开发。</p>
+            <p>2.简单清晰的开发</p>
+            <p>Arduino IDE基于Processing IDE开发，这对于初学者来说极易掌握，同时又有着足够的灵活性。Arduino语言是基于Wiring语言开发的，是对AVR GCC库的二次封装，并不需要太多的单片机基础和编程基础，只要简单的学习后就可以快速的开发。</p>
+            <p>3.开放性</p>
+            <p>Arduino的营建原理图、电路图、IDE软件及核心库文件都是开源的，在开源协议范围内可以任意修改原始设计及相关代码。</p>
+            <p>4.社区与第三方支持</p>
+            <p>Arduino有着众多的开发者和用户，因此可以找到他们提供的众多开源的示例代码和硬件设计。例如，可以在Github.com、Arduino.cc、Openjumper.com等网站上找到Arduino的第三方硬件。外设和类库等支持，以便更快、更简单地扩展自己的Arduino项目。</p>
+            <p>5.硬件开发趋势</p>
+            <p>Arduino不仅仅是全球最流行的开发硬件，也是一个优秀的硬件开发平台，更是营建开发的趋势。Arduino简单的开发方式使得开发者更关注与创意与实现，可以更快地完成自己的项目开发，大大节约学习的成本，缩短开发周期。</p>
+            <p>鉴于Arduino的种种优势，越来越多的专业营建开发者已经或开始使用Arduino进入硬件、物联网等开发领域；在大学里，自动化、软件专业，甚至艺术专业，也纷纷开设了Arduino相关课程。</p>
+        </div>
+
+        <div class="page" chapter="第1章 初识Arduino" page="15">
+            <h5 class="minutia">1.4<br /><span>Arduino 硬件</span><br /><span class="remark">——选择一款适合自己的Arduino控制器</span></h5>
+            <p>Arduino发展至今，已经有了多种型号及众多衍生控制器推出，再次列举一些使用广泛且最具特点的Arduino控制器，为大家做一简单介绍。在使用Arduino控制器完成项目制作之前，应该对各个型号有一定的了解，以便选择适合自己项目的控制器。</p>
+            <p class="minutia">1.4.1 认识不同型号的Arduino控制器</p>
+            <p>1.Arduino UNO</p>
+            <p>Arduino UNO(<a href="#img1_8">图1-8</a>)是目前使用最广泛的Arduino控制器，具有Arduino的所有功能，是初学者最佳选择。本书大部分章节江永Arduino UNO进行教学演示。在掌握了解UNO的开发技巧以后，就可以将自己的代码轻松移植到其他型号的控制器上。</p>
+            <div class="ImgBox" id="img1_8">
+                <img src="Img/1_8.png" alt="图1-8 Arduino UNO" />
+                <p>图1-8 Arduino UNO</p>
+            </div>
+            <p>2.Arduino MEGA</p>
+            <p>Arduino MEGA(<a href="#img1_9">图1-9</a>)是一个增强型的Arduino控制器。相当于UNO，他提供了更多的输入/输出接口，可以控制更多的设备。以及拥有更大的程序空间和内存，是完成较大项目的好选择。</p>
+        </div>
+        <div class="page" chapter="1.4 Arduino 硬件——选择一款适合自己的Arduino控制器" page="16">
+            <div class="ImgBox" id="img1_9">
+                <img src="Img/1_9.png" alt="图1-9 Arduino MEGA" />
+                <p>图1-9 Arduino MEGA</p>
+            </div>
+            <p>3.Arduino Leonardo(<a href="#img1_10">图1-10</a>)是2012年推出的新型Arduino控制器，使用集成USB功能的AVR单片机制作主控芯片，不仅具备其他型号Arduino控制器的所有功能，还能轻松模拟鼠标、键盘等USB设备。（更详细的介绍请见附录）</p>
+            <p>4.Arduino Due</p>
+            <p>Arduino Due(<a href="#img1_11">图1-11</a>)是Arduino官方在2012年最新推出的控制器，与以往使用8位AVR单片机的Arduino板不同，Due突破行的使用了32位ARM Cortex M3作为中控芯片。他继承了多种外设，有着其他Arduino板无法比拟的性能，是目前最为强大的Arduino控制器。（更详细的的介绍请见附录）</p>
+            <div class="ImgBox" id="img1_10">
+                <img src="Img/1_10.png" alt="Alternate Text" />
+                <p>图1-10 Arduino Leonardo</p>
+            </div>
+        </div>
+
+        <div class="page" chapter="1.4 Arduino 硬件——选择一款适合自己的Arduino控制器" page="17">
+            <div class="ImgBox" id="img1_11">
+                <img src="Img/1_11.png" alt="图1-11 Arduino Due " />
+                <p>图1-11 Arduino Due</p>
+            </div>
+            <p>5.Arduino Zero</p>
+            <p>Arduino Zero(<a href="#img1_12">图1-12</a>)是目前最新的Arduino控制器方案，使用Atmel公司的ARM Cortex-M0芯片作为主控芯片。该方案的最大特点是提供EDBG调试端口，可以联机进行单步调试，极大降低了Arduino开发调试的难度。</p>
+            <div class="ImgBox" id="img1_12">
+                <img src="Img/1_12.png" alt="图1-12 Arduino Zero " />
+                <p>图1-12 Arduino Zero</p>
+            </div>
+            <p>6.小型化的Arduino</p>
+            <p>为应对特殊要求，Arduino还有许多小型化的设计方案（<a href="#img1_13">图1-13</a>）。常见的小型Arduino控制器有arduinoNano、Arduino Mini、Arduino Micro、Arduino Lilypad等。这些小型控制器虽然在设计上精简了许多地方，但使用起来一样方便。其中Arduino Mini 和Arduino Lilypad需要外部模块配合来完成程序下载功能。</p>
+        </div>
+
+        <div class="page" chapter="1.4 Arduino 硬件——选择一款适合自己的Arduino控制器" page="18">
+            <div class="ImgBox" id="img1_13">
+                <img src="Img/1_13.png" alt="图1-13 小型化Arduino" />
+                <p>图1-13 小型化Arduino</p>
+            </div>
+            <p>7.Arduino兼容控制器</p>
+            <p>Arduino公布了原理图及PCB图纸，并试用了开源协议，使得其他硬件厂商也可以生产Arduino控制器，但“Arduino”商标归Arduino团队所有，其他生产商不能使用。Arduino代理商、国内知名的开源硬件厂商OpenJumper提供的Zduino(<a href="#img1_14">图1-14</a>)和DFRobot提供的DFRduino是国内Arduino爱好者的理想选择。</p>
+            <div class="ImgBox" id="img1_14">
+                <img src="Img/1_14.png" alt="图1-14 Arduino兼容控制器" />
+                <p>图1-14 Arduino兼容控制器</p>
+            </div>
+            <p>8.衍生控制器</p>
+            <p>众多Arduino爱好者及硬件公司基于Arduino的设计理念，在其他单片机上完成了类似Arduino的开发工据。这些开发工具有着与Arduino兼容的硬件外形设计，一样简单的开发环境和核心函数。只要掌握了Arduino的开发方式，即可轻松地使用这些衍生控制器来完成开发工作。</p>
+
+        </div>
+        <div class="page" chapter="1.4 Arduino 硬件——选择一款适合自己的Arduino控制器" page="19">
+            <p>9.Intel Galileo</p>
+            <p>Intel Galileo(<a href="#img1_15">图1-15</a>)是Intel公司推出Arduino衍生控制器，使用x86内核的夸克（Quark）处理器，同事运行着一套Linux系统。不仅可以当做Arduino开发，也可以在上面进行Linux相关开发。</p>
+            <div class="ImgBox" id="img1_15">
+                <img src="Img/1_15.png" alt="图1-15 Intel Galileo" />
+                <p>图1-15 Intel Galileo</p>
+            </div>
+            <p>10,Maple</p>
+            <p>Maple(<a href="#img1_16">图1-16</a>)是LeafLabs公司基于意法半导体的STM32芯片开发的、以ARM Cortex M3为核心的衍生控制器，有着与Arduino相似的开发方式。</p>
+            <div class="ImgBox" id="img1_16">
+                <img src="Img/1_16.png" alt="图1-16 Maple" />
+                <p>图1-16 Maple</p>
+            </div>
+            <p>11.ChipKit</p>
+            <p>ChipKit(<a href="#img1_17">图1-17</a>) 是DIGILENT公司推出的、基于微芯公司PIC32芯片开发的、以MIPS为核心的Arduino衍生控制器，有着与Arduino相似的开发方式。</p>
+        </div>
+        <div class="page" chapter="1.4 Arduino 硬件——选择一款适合自己的Arduino控制器" page="20">
+            <div class="ImgBox" id="img1_17">
+                <img src="Img/1_17.png" alt="图1-17 ChipKit" />
+                <p>图1-17 ChipKit</p>
+            </div>
+            <p>12.Google ADK 2012</p>
+            <p>Google ADK 2012(<a href="#img1_18">图1-18</a>)是Google公司推出的一款基于Arduino Due 的控制器，主要用于结合Ardroid设备制作各种项目。ADK 2012 是Google在2012年I/O大会上推出的最新版本。</p>
+            <div class="ImgBox" id="img1_18">
+                <img src="Img/1_18.png" alt="图1-18 Google ADK 2012" />
+                <p>图1-18 Google ADK 2012</p>
+            </div>
+            <p class="minutia">1.4.2 众多的Arduino 外围模块</p>
+            <p>1.Arduino各类模块</p>
+            <p>Arduino可以与传感器、开关、通信设备、显示设备等连接组合，完成不同的功能。</p>
+            <p>后续章节中会选择一些常用的模块。<a href="#img1_19">图1-19</a>展示了部分可与Arduino连接的模块。</p>
+        </div>
+        <div class="page" chapter="1.4 Arduino 硬件——选择一款适合自己的Arduino控制器" page="21">
+            <div class="ImgBox" id="img1_19">
+                <img src="Img/1_19.png" alt="图1-19 各种Arduino外围模块" />
+                <p>图1-19 各种Arduino外围模块</p>
+            </div>
+            <p>2.Arduino扩展板</p>
+            <p>扩展板（Shield）是可以堆叠接茬到Arduino上的电路板，不同的扩展板有着不同的功能。<a href="#img1_20">图1-20</a>展示了三款Arduino兼容的扩展板。</p>
+            <p>相对于其他扩展模块，他们接插更方便。如<a href="#img1-21">图1-21 </a>所示，当使用扩展板是，不必考虑接口位置，只需要把他们叠加到Arduino上即可。有些扩展板可以重叠多个，已达到扩展多个功能的目的。</p>
+            <div class="ImgBox" id="img1_20">
+                <img src="Img/1_20.png" alt="图1-20 Arduino兼容的扩展板" />
+                <p>图1-20 Arduino兼容的扩展板</p>
+            </div>
+        </div>
+        <div class="page" chapter="1.4 Arduino 硬件——选择一款适合自己的Arduino控制器" page="22">
+            <div class="ImgBox" id="img1_21">
+                <img src="Img/1_21.png" alt="图1-21 多个扩展板堆叠在一起" />
+                <p>图1-21 多个扩展板堆叠在一起</p>
+            </div>
+            <p class="minutia">1.4.3 从Arduino UNO 开始</p>
+            <p>Arduino UNO是Arduino入门的最佳选择，在编著本书时，其最新的版本为 UNO R3，本书大部分内容都基于Arduino UNO R3写成的。</p>
+            <p>Arduino UNO的详细组成信息如<a href="#img1_22">图1-22</a>所示</p>
+            <div class="ImgBox" id="img1_22">
+                <img src="Img/1_22.png" alt="图1-22 Arduino UNO 解析图" />
+                <p>图1-22 Arduino UNO 解析图</p>
+            </div>
+        </div>
+        <div class="page" chapter="1.4 Arduino 硬件——选择一款适合自己的Arduino控制器" page="23">
+            <p>1.电源（Power）</p>
+            <p>Arduino UNO有三种供电方式：</p>
+            <p>通过USB接口供电，电压为5V；</p>
+            <p>通过DC电源接入接口供电，电压要求7~12V；</p>
+            <p>通过电源接口处5V或者VIN端口供电，5V端口处供电必须为5V，VIN端口处供电为7~12V。</p>
+            <p>2.指示灯（LED）</p>
+            <p>Arduino UNO带有4个LED指示灯，作用分别是：</p>
+            <p>ON，电源指示灯。当Arduino通电时，ON灯会点亮。</p>
+            <p>TX，串口发送指示灯。当使用USB连接到计算机且Arduino向计算机传输数据时，TX灯会亮。</p>
+            <p>RX，串口接收指示灯。当使用USB连接到计算机且Arduino接收到计算机传来的数据时，RX灯会点亮。</p>
+            <p>L，可编程控制指示灯。该LED通过特殊电路连接到Arduino的13号引脚，当13号引脚为高电平或高阻态时，该LED会点亮；当为低电平时，不会点亮。因此可以通过程序或者外部输入信号来控制该LED的亮灭。</p>
+            <p>3.复位按键（Reset Button）</p>
+            <p>按下该按键可以使Arduino重新启动，重头开始运行程序。</p>
+            <p>4.存储空间（Memory）</p>
+            <p>Ardunio的存储空间即是其主芯片所集成的存储空间。也可以通过外设芯片的方式来扩展Arduino的存储空间。Arduino UNO的存储空间分三种：</p>
+            <p>Flash，容量为32KB。其中0.5KB作为Boot区用于存储引导程序，实现通过串口下载程序的功能；另外的31.5KB作为用户存储的空间。相对于现在动辄几百GB的硬盘，可能觉得32KB太小了，但是在单片机上，32KB已经可以存储很大的程序了。</p>
+            <p>SRAM，容量为2KB。SRAM相当于计算机的内存，当CPU进行运算时，需要在其中开辟一定的存储空间。当Arduino断电或复位后，其中的数据会全丢失。</p>
+            <p>EEPROM，容量1KB.EEROM的全称为电可擦写的编程只读存储器，是一种用户可更改的只读存储器，其特点是在Arduino断电或复位后，其中的数据不会丢失。</p>
+        </div>
+        <div class="page" chapter="1.4 Arduino 硬件——选择一款适合自己的Arduino控制器" page="24">
+            <p>5.输入/输出端口（Input/Output Port）</p>
+            <p>如<a href="#img1_22">图1-22</a>所示，Arduino UNO有14个数字输入/输出端口，6个模拟输入端口。其中一些带有特殊功能，这些端口如下：</p>
+            <p>UART通信，为0（RX）和1（TX）引脚，被用于接收和发送串口数据。这两个引脚通过连接到AT-mega16 U2来与计算机进行串口通信。</p>
+            <p>PWM输出，为3、5、6、9、10和11引脚，可用于输出PWM波。</p>
+            <p>SPI通信，为10（SS）、11（MOSI）、12（MISO）和13（SCK）引脚，可用于SPI通信。</p>
+            <p>TWI通信，为A4（SDA）、A5（SCL）引脚和TWI接口，可用于TWI通信，兼容IIC通信。</p>
+            <p>AREF，模拟输入参考电压的输入端口。</p>
+            <p>Reset，复位端口。接低电会使Arduino复位，当复位键背按下时，会使改端口接到低电平，从而使Arduino复位。</p>
+            <p>可以在<a href="http://arduino.cc/en/Main/ArduinoBoardUno" target="_blank">http://arduino.cc/en/Main/ArduinoBoardUno</a>上找到Arduino UNO更多的相关信息及下载最新的原理图及PCB文件。</p>
+        </div>
+
+        <div class="page" chapter="第1章 初识Arduino" page="25">
+            <h5 class="minutia">1.5<br /><span>Arduino软件</span></h5>
+            <p class="minutia">1.5.1 下载配置Arduino开发环境</p>
+            <p>在开始使用Arduino之前，需要在电脑上安装Arduino的集成开发环境（伺候简称IDE）。如<a href="#img1_23">图1-23</a>所示，可以在<a href="http://arduino.cc/en/Main/Software" target="_blank">http://arduino.cc/en/Main/Software</a>网址下看到个版本IDE的下载方式。</p>
+            <div class="ImgBox" id="img1_23">
+                <img src="Img/1_23.png" alt="图1-23 Arduino IDE下载页面" />
+                <p>图1-23 Arduino IDE下载页面</p>
+            </div>
+            <p>如果使用的是Arduino Due，则需要下载1.5BETA版的Arduino IDE。</p>
+            <p>在Windows系统下，可以单击Windows Installers下载安装包，并指定地址安装Arduino IDE；也可以下载ZIP压缩包，解压文件到任意位置，然后双击Arduino.exe文件进入Arduino IDE。</p>
+            <p>Mac OS X系统下，下载并解压ZIP文件，双击Arduino.app文件进入Arduino IDE。如果还没有安装过java运行库，则系统会提示进行安装，安装完成后即可运行Arduino IDE。</p>
+            <p>在Linux系统下，需要使用make install命令进行安装，如果使用的是Ubuntu系统，则推荐直接使用Ubuntu软件中心来安装Arduino IDE。</p>
+        </div>
+        <div class="page" chapter="1.5 Arduino 软件" page="26">
+            <p class="minutia">1.5.2 认识Arduino IDE</p>
+            <p>如<a href="#img1_24">图1-24</a>所示，进入Arduino IDE之后，首先出现的是Arduino IDE的启动画面。</p>
+            <div class="ImgBox" id="img1_24">
+                <img src="Img/1_24.png" alt="图1-24 Arduino IDE启动画面" />
+                <p>图1-24 Arduino IDE启动画面</p>
+            </div>
+            <p>如<a href="#img1_25">图1-25</a>所示，几秒后，可以看到一个简单明了的窗口。</p>
+            <div class="ImgBox" id="img1_25">
+                <img src="Img/1_25.png" alt="图1-25 Arduino IDE界面" />
+                <p>图1-25 Arduino IDE界面</p>
+            </div>
+            <p>选择File→Preference菜单项，在弹出的Preferences窗口（<a href="#img1_26">图1-26</a>）中设置IDE语言，如简体中文（Chinese Simplified）。关闭IDE重启，界面会显示成中文显示。</p>
+            <p>Arduino IDE窗口分为如<a href="#img1_27">图1-27</a>所示的几个区域。</p>
+        </div>
+        <div class="page" chapter="1.5 Arduino 软件" page="27">
+            <div class="ImgBox" id="img1_26">
+                <img src="Img/1_26.png" alt="图1-26 Arduino IDE语言设置" />
+                <p>图1-26 Arduino IDE语言设置</p>
+            </div>
+            <p>在工具栏上，Arduino IDE提供了常用功能的快捷键：</p>
+            <p><img src="Img/Verify.png" alt="Verify" />校验（Verify），验证程序是否编写无误，若无误则编译该项目。</p>
+            <p><img src="Img/UpLoad.png" alt="UpLoad" />下载（Upload），下载程序到Arduino控制器上。</p>
+            <p><img src="Img/new.png" alt="New" />新建（New），新建一个项目。</p>
+            <p><img src="Img/Open.png" alt="Open" />打开（Open），打开一个项目。</p>
+            <p><img src="Img/Save.png" alt="Save" />保存（Save），保存当前项目。</p>
+            <p><img src="Img/SerialMonitor.png" alt="SerialMonitor" />串口监视器（Serial Monitor），IDE自带的一个简单的串口见识程序，用它可以查看串口发送或接收到的数据。</p>
+            <p>相对于IAR、Keil等专业的营建开发环境，Arduino的开发环境给人以简单明了的感觉，但正是这种简单，省去了很多不常用的功能，使得基础知识不多的使用者更容易上手。</p>
+            <p>对于一个专业的开发人员，或者正准备使用Arduino开发一个大型项目的人来说，笔者推荐使用 Visual Studio、Eclipse等更为专业的开发环境进行开发。当然，第三方开发环境需要下载响应的Arduino插件并进行配置，具体的使用方法会在以后的章节中介绍。</p>
+        </div>
+
+        <div class="page" chapter="1.5 Arduino 软件" page="28">
+            <div class="ImgBox" id="img1_27">
+                <img src="Img/1_27.png" alt="图1-27 Arduino IDE 界面功能解析" />
+                <p>图1-27 Arduino IDE界面功能解析</p>
+            </div>
+            <p class="minutia">1.5.3 安装Arduino驱动程序</p>
+            <p>如果使用的是Arduino UNO、Arduino MEGA r3、Arduino Leonardo或者这些型号对应的兼容控制器，并且计算机系统为Mac OS或者Linux，那么只需要使用USB连接线，并且插上Arduino控制器，系统会自动安装驱动，安装完成后即可使用。</p>
+            <p>其他型号的控制器或者Windows系统则需要手工安装驱动程序。</p>
+            <p>在Windows中安装驱动的方法如下：</p>
+            <p>①如<a href="#img1_28">图1-28</a>所示，当使用USB线缆连接上Arduino后，计算机右下角会弹出气泡提示。</p>
+            <p>②通过右击选择“计算机”→“属性”→“设备管理器”打开设备管理器界面，这时会看到一个如<a href="#img1_29">图1-29</a>所示的“位置设备”。</p>
+            <div class="ImgBox" id="img1_28">
+                <img src="Img/1_28.png" alt="图1-28 Arduino驱动安装提示" />
+                <p>图1-28 Arduino驱动安装提示</p>
+            </div>
+        </div>
+
+        <div class="page" chapter="1.5 Arduino 软件" page="29">
+            <div class="ImgBox" id="img1_29">
+                <img src="Img/1_29.png" alt="图1-29 设备管理器显示“未知设备”" />
+                <p>图1-29 设备管理器显示“未知设备”</p>
+            </div>
+            <p>③双击“未知设备”，并单击“更新驱动程序”按钮，如<a href="#img1_30">图1-30</a>所示。</p>
+            <div class="ImgBox" id="img1_30">
+                <img src="Img/1_30.png" alt="图1-30 驱动安装步骤1" />
+                <p>图1-30 驱动安装步骤1</p>
+            </div>
+            <p>如<a href="#img1_31">图1-31</a>所示，在弹出的对话框中单击“浏览计算机并查找驱动程序软件”。</p>
+        </div>
+
+        <div class="page" chapter="1.5 Arduino 软件" page="30">
+            <div class="ImgBox" id="img1_31">
+                <img src="Img/1_31.png" alt="图1-31 驱动安装步骤2" />
+                <p>图1-31 驱动安装步骤2</p>
+            </div>
+            <p>⑤如<a href="#img1_32">图1-32</a>所示，选择驱动所在的地址（即Arduino安装目录下的drivers文件夹），并单击“下一步”按钮，开始安装驱动。</p>
+            <div class="ImgBox" id="img1_32">
+                <img src="Img/1_32.png" alt="图1-32 驱动安装步骤3" />
+                <p>图1-32 驱动安装步骤3</p>
+            </div>
+            <p>⑥如果需要安装的Arduino IDE版本较老，则在安装过程中会弹出如<a href="#img1_33">如图1-33</a>所示的Windows安全提示，此时点击“始终安装此驱动程序软件”。</p>
+
+        </div>
+
+        <div class="page" chapter="1.5 Arduino 软件" page="31">
+            <div class="ImgBox" id="img1_31">
+                <img src="Img/1_33.png" alt="图1-34 驱动安装步骤4" />
+                <p>图1-33 驱动安装步骤4</p>
+            </div>
+            <p>⑦如<a href="#img1_34">图1-34</a>所示，安装完成后会显示提示信息。</p>
+            <p>⑧如<a href="#img1_35">图1-35</a>所示，此时在设备管理器中可以看到Arduino控制器所对应的的COM口。记下该串口号，后面很快会用到它。</p>
+            <div class="ImgBox" id="img1_34">
+                <img src="Img/1_34.png" alt="图1-34 驱动安装成功提示" />
+                <p>图1-34 驱动安装成功提示</p>
+            </div>
+        </div>
+        <div class="page" chapter="1.5 Arduino 软件" page="32">
+            <div class="ImgBox" id="img1_35">
+                <img src="Img/1_35.png" alt="图1-35 设备管理器显示" />
+                <p>图1-35 设备管理器显示</p>
+            </div>
+        </div>
+
+        <div class="page" chapter="第1章 初识Arduino" page="33">
+            <h5 class="minutia">1.6<br /><span>Blink</span><br /><span class="remark">——Arduino 的 Hello World！</span></h5>
+            <p>Hello World 是所有编程语言的第一课，不过在Arduino中，Hello World叫做Blink。Arduino提供了很多实例代码，使用这些事例代码，可以很轻松地开始Arduino的学习之旅。</p>
+            <div class="ImgBox" id="img1_36">
+                <img src="Img/1_36.png" alt="图1-36 打开Arduino的示例程序" />
+                <p>图1-36 打开Arduino的示例程序</p>
+            </div>
+            <p>如<a href="#img1_36">图1-36</a>所示，在Arduino窗口中可以选择“文件”→“示例”→“1.Basics”→“Blink”菜单项打开要使用的例程。</p>
+        </div>
+
+        <div class="page" chapter="1.6 Blink——Arduino的Hello World！" page="34">
+            <pre class="lineFeed">//the setup function runs once when you press reset or power the board
+// 这个方法会在你按下复位键或给电路板供电的时候执行一次
+void setup() {
+    // initialize digital pin LED_BUILTIN as an output.
+    // 初始化数字引脚 LED_BUILTIN(内置LED) 为输出
+    pinMode(LED_BUILTIN, OUTPUT);
+}
+// the loop function runs over and over again forever
+// 循环函数会一直运行下去
+void loop() {
+    digitalWrite(LED_BUILTIN, HIGH);   // 将此LED转换成高电平
+    delay(1000);                       // 等待一秒
+    digitalWrite(LED_BUILTIN, LOW);    // 将此LED转换成低电平
+    delay(1000);                       // 等待一秒
+}</pre>
+            <p>这些代码的具体含义将在第2章中进行讲解。</p>
+            <p>在编译或下载该程序之前，需要先在“工具”→“板卡”菜单中选择正在使用的Arduino控制器型号，如<a href="#img1_37">图1-37</a>所示。</p>
+            <p>如<a href="#img1_38">图1-38</a>所示，接着在“工具”→“串口”菜单中选择Arduino控制器对应的串口。在Windows系统中，串口名称为“COM”加数字编号，如COM3。在选择串口时，需要查看设备管理器中所选Arduino控制器对应的串口号。</p>
+            <p>如<a href="#img1_39">图1-39</a>所示，在Mac OS或者Linux中，串口名称一般为/dev/tty.usbmodem加数字编号或/dev/cu.usb-modem加数字编号。</p>
+            <p>板卡和串口设置完成后，就可以在IDE的右下角看到当前设置的Arduino控制器型号及对应串口了。</p>
+            <p>接着单击<img src="img/Verify.png" alt="校验" />校验（Verify）工具按钮，IDE会自动检测程序是否正确，如果程序无误，则调试提示区会一次显示“编译程序中”和“编译完毕”。</p>
+        </div>
+
+        <div class="page" chapter="1.6 Blink——Arduino的Hello World！" page="34">
+            <div class="ImgBox" id="img1_37">
+                <img src="Img/1_37.png" alt="图1-37 选择Arduino控制器型号" />
+                <p>图1-37 选择Arduino控制器型号</p>
+            </div>
+            <p>当编译完成后，将会看到如<a href="#img1_40">图1-40</a>中，“1,084字节”为当前程序编译后的大小，括号中的“最大32,256字节”表示当前控制器可以使用的Flash程序存储空间的大小。如果程序有误，则调试提示区会显示相关错误提示。</p>
+            <p>单击<img src="Img/Upload.png" alt="下载" />下载（Upload）工具按钮，调试提示区会显示“编译程序中”，很快该提示会变成“下载中”，此时Arduino控制器上标有TX、RX的两个LED会快速杉树，说明当前程序正在被写入Arduino控制器中。</p>
+            <p>当显示“下载完毕”时，会看到如<a href="#img1_41">图1-41</a></p>
+        </div>
+    </div>
+</body>
+</html>
+<!--
+<div class="page" chapter="第1章 初识Arduino" page="7">
+
+</div>
+        <div class="page" chapter="1.6 Blink——Arduino的Hello World！" page="34">
+
+</div>
+         <div class="ImgBox" id="img1_35">
+                <img src="Img/1_35.png" alt="图1-35 设备管理器显示" />
+                <p>图1-35 设备管理器显示</p>
+            </div>
+    -->
